@@ -164,11 +164,11 @@
                         {% if content %}
                         <img style="width: 100%;" id="content" class="mt-5 align-center" src="/media/content/{{ content }}" />
                         {% else %}
-                        <img style="width: 100%;" class="mt-5 align-center" src="{% staticfiles 'placeholder.jpg' %}" />
+                        <img style="width: 100%;" class="mt-5 align-center" src="{% static 'placeholder.jpg' %}" />
                         {% endif %}
                     </div>
                     <div class="col">
-                        <img style="width: 100%;" id="result" class="mt-5 align-center" src="{% staticfiles 'placeholder.jpg' %}" />
+                        <img style="width: 100%;" id="result" class="mt-5 align-center" src="{% static 'placeholder.jpg' %}" />
                     </div>
                 </div>
             </div>
