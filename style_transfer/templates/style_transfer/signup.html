@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+
+<html lang="ja" dir="ltr">
+    <head>
+        <title>mimic</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+            integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css2?family=Julius+Sans+One&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="../../../static/css/preview-slider.min.css">
+        <link rel="stylesheet" href="../../../static/css/main.css">
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        
+        <style type="text/css">
+            body{
+	            background: url(http://www.timurtek.com/wp-content/uploads/2014/10/form-bg.jpg) no-repeat center center fixed; 
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                -o-background-size: cover;
+                background-size: cover;
+                font-family:'MS Pゴシック';
+            }
+            a{color:#58bff6;text-decoration: none;}
+            a:hover{color:#aaa; }
+            .pull-right{float: right;}
+            .pull-left{float: left;}
+            .clear-fix{clear:both;}
+            div.logo{text-align: center; margin: 0px; fill: #566375;}
+            .head{padding:40px 0px;}
+            .logo-active{fill: #44aacc !important;}
+            #formWrapper{
+                background-image: url(../../../static/style_img/venice.jpg) ;
+                background-size: cover;
+                /* background: rgba(0,0,0,.2);  */
+                width:100%; 
+                height:100%; 
+                position: absolute; 
+                top:0; 
+                left:0;
+                transition:all .3s ease;}
+            .darken-bg{background-image: url(../../../static/style_img/result_venice.jpg) !important; transition:all .3s ease;}
+            /* background: rgba(0,0,0,.5) */
+            div#form{
+                
+                /* position: absolute; */
+                width:300px;
+                /* height:320px; */
+                height:auto;
+                background-color: rgb(226, 223, 223);
+                margin: 150px auto;
+                border-radius: 5px;
+                padding:20px;
+                /* left:47%;
+                top: 32%; */
+                /* margin-left:auto;
+                margin-right: auto;
+                margin-top:70px; */
+                font-family:'HelveticaNeue','Arial', sans-serif;
+            }
+            div.form-item{position: relative; display: block; }
+            input{transition: all .2s ease;}
+            input.form-style{
+                color:#8a8a8a;
+                display: block;
+                width: 90%;
+                height: 44px;
+                padding: 5px 5%;
+                border:1px solid #ccc;
+                -moz-border-radius: 27px;
+                -webkit-border-radius: 27px;
+                border-radius: 27px;
+                -moz-background-clip: padding;
+                -webkit-background-clip: padding-box;
+                background-clip: padding-box;
+                background-color: #fff;
+                font-family:'HelveticaNeue','Arial', sans-serif;
+                font-size: 105%;
+                letter-spacing: .8px;
+            }
+            div.form-item .form-style:focus{outline: none; border:1px solid #58bff6; color:#58bff6; }
+            div.form-item p.formLabel {
+                position: absolute;
+                left:26px;
+                top:10px;
+                transition:all .4s ease;
+                color:#bbb;}
+            .formTop{top:-22px !important; left:26px; background-color: #fff; padding:0 5px; font-size: 14px; color:#58bff6 !important;}
+            .formStatus{color:#8a8a8a !important;}
+            input[type="submit"].login{
+                float:right;
+                width: 112px;
+                height: 37px;
+                -moz-border-radius: 19px;
+                -webkit-border-radius: 19px;
+                border-radius: 19px;
+                -moz-background-clip: padding;
+                -webkit-background-clip: padding-box;
+                background-clip: padding-box;
+                background-color: #55b1df;
+                border:1px solid #55b1df;
+                border:none;
+                color: #fff;
+                font-weight: bold;
+            }
+            input[type="submit"].login:hover{background-color: #fff; border:1px solid #55b1df; color:#55b1df; cursor:pointer;}
+            input[type="submit"].login:focus{outline: none;}
+
+        </style>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    </head>
+
+    <body>
+        <header class="site-header">
+            <div class="header-left">
+                <a href="/">
+                    <img src="../../../static/logo_img/mimic.png" alt="" height="65px" width="auto">                    
+                </a>
+              
+            </div>
+            <div class="header-right">          
+                <a href="{% url 'login' %}" class="login" >ログイン</a>
+            </div>
+        </header>
+        <div id="formWrapper">   
+        <div id="form">
+        <div class="logo">
+            <img src="../../../static/logo_img/logo_only.png" alt="" height="150vw" width="auto"> 
+            <h4 style="text-align: center;">新規登録</h4>     
+        </div>
+        {% if form.errors %}
+        <p>サインアップ認証に失敗しました。</p>
+        {% endif %}
+        <form action="{% url 'signup' %}" method="POST">
+            <div class="form-item "> 
+                
+                <!-- <p class="formLabel "></p> -->
+                <div type="password" name="password" id="password" class="form-style" >
+                    {% csrf_token %}
+                    {{ form.username }}
+                </div>
+                <p><small>
+                    <li>半角アルファベット、半角数字、@/./+/-/_で150文字以下にしてください。</li>
+                </small></p>                   
+            </div>
+            <div class="form-item">
+                <!-- <p class="formLabel"></p> -->
+                <div type="password" name="password" id="password" class="form-style" >
+                    {% csrf_token %}
+                    {{ form.password1 }}
+                </div>
+                <p><small>
+                    <li>パスワードは最低 8 文字以上必要です。</li>
+                    <li>数字だけのパスワードにはできません。</li>                  
+                </small></p>
+
+            </div>
+            <div class="form-item">
+                <!-- <p class="formLabel"></p> -->
+                <div type="password" name="password" id="password" class="form-style" >
+                    {% csrf_token %}
+                    {{ form.password2 }}
+                </div>
+                <!-- <p><small>
+                    <li>確認用に再度入力して下さい。</li>                  
+                </small></p> -->
+
+                <!-- <div class="pw-view"><i class="fa fa-eye"></i></div> -->
+                <!-- <p><a href="#" ><small>Forgot Password ?</small></a></p>	 -->
+            </div>
+            <div class="form-item">
+            <!-- <p class="pull-left"><a href="#"><small>Register</small></a></p> -->
+            <a href="/">
+                <button id="send-signup" type="submit" class="login pull-right">signup</button>
+            </a>
+
+            <!-- <input type="submit" class="login pull-right" value="signup"> -->
+            <div class="clear-fix"></div>
+            </div>
+        </form>
+        </div>
+        </div>  
+        <footer>
+            <p class="site-footer" style="margin: 0px;">Yosuke Omori &copy;{% now "Y" %}</p>
+        </footer>
+
+       
+        <script type="text/javascript">
+            $(document).ready(function(){
+                var formInputs = $('input[type="username"],input[type="password"]');
+                formInputs.focus(function() {
+                $(this).parent().children('p.formLabel').addClass('formTop');
+                $('div#formWrapper').addClass('darken-bg');
+                $('div.logo').addClass('logo-active');
+                });
+                formInputs.focusout(function() {
+                    if ($.trim($(this).val()).length == 0){
+                    $(this).parent().children('p.formLabel').removeClass('formTop');
+                    }
+                    $('div#formWrapper').removeClass('darken-bg');
+                    $('div.logo').removeClass('logo-active');
+                });
+                $('p.formLabel').click(function(){
+                    $(this).parent().children('.form-style').focus();
+                });
+            });
+        </script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    </body>
+</html>
+
+
+

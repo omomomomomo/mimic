@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+
+<head>
+    <title>mimic</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Julius+Sans+One&display=swap" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="../../../static/css/preview-slider.min.css">
+    <link rel="stylesheet" href="../../../static/css/main.css"> -->
+    <style type="text/css">
+        body {
+            background-attachment: fixed;
+        }
+
+        h1 {
+            font-family: 'Raavi', sans-serif;
+        }
+
+        .main-container {
+            margin-right: 3rem;
+            margin-left: 3rem;
+            margin-top: 70px;
+        }
+
+        .container {
+            margin: 5px;
+        }
+
+
+        #styles {
+            max-height: 50rem;
+            overflow: scroll;
+        }
+
+        a {
+            text-decoration: none !important;
+        }
+
+        .card:hover {
+            border: 6px solid rgb(0, 0, 104);
+            border-radius: 4px;
+        }
+        header {
+        height: 65px;
+        width: 100%;
+        /* background-color: rgba(34, 49, 52, 0.3); */
+        background-color: rgba(0, 0, 0, 0.7);
+
+        /* positionプロパティをfixedに、topを0に指定してください */
+        position: fixed;
+        top: 0;
+
+        /* z-indexを10に指定してください */
+        z-index: 10;
+        }
+
+        .logo {
+            width: 124px;
+            margin-top: 20px;
+        }
+
+        .header-left {
+            float: left;
+        }
+
+        .header-right {
+            display: flex;
+            float: right;
+            background-color: rgba(255, 255, 255, 0.3);
+            transition: all 0.5s;
+        }
+
+        .header-right-log {
+            display: flex;
+            float: right;
+            /* background-color: rgba(255, 255, 255, 0.3);
+            transition: all 0.5s; */
+        }
+
+        .header-right:hover {
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .header-right a {
+            line-height: 65px;
+            padding: 0 25px;
+            color: white;
+            display: block;
+        }
+
+        footer {
+            height: 65px;
+            bottom: 0px;
+            width: 100%;
+            background-color: rgba(34, 49, 52, 0.3);
+            /* positionプロパティをfixedに、topを0に指定してください */
+
+            /* z-indexを10に指定してください */
+            z-index: 10;
+        }
+
+        footer {
+            width: 100%;
+            height: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            text-align: left;
+            padding: 0 px;
+            margin: 0px;
+
+            position: fixed; /*←絶対位置*/
+            bottom: 0; /*下に固定*/
+        }
+
+
+    </style>
+</head>
+
+<body>   
+    <header class="site-header">
+        <div class="header-left">
+            <a href="/">
+                <img src="../../../static/logo_img/mimic.png" alt="" height="65px" width="auto">                    
+            </a>
+        </div>
+        <div class="header-right"> 
+            <div>
+                {% if user.is_authenticated %}
+                <a href="{% url 'logout' %}" class="logout">ログアウト</a>
+                {% endif %}
+            </div>           
+        </div>
+    </header>
+    <!-- <nav class="navber navber-light" style="background-color: white;">
+        <a href="/" class="navbar mb-0 h1">mimic</a>
+        <span style="font-size:15px; text-align: right;">
+            
+            <a>こんにちはadminさん</a>
+            <a href="/logout/" style="color: black;">
+              ログアウト
+            </a>
+        </span> 
+
+    </nav> -->
+
+    <div class="main-container">
+        <br>
+        <div class="row bg-light p-3 rounded-lg main-content mt-2">
+        
+            <div class="col-9">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <input type="file" name="content">
+                    <br><br>
+                    <button class="btn btn-dark" type="submit">Upload</button>
+                    <br>
+                </form>
+                
+                <div class="row">
+                    <div class="col">
+                        {% if content %}
+                        <img style="width: 100%;" id="content" class="mt-5 align-center" src="/media/content/{{ content }}" />
+                        {% else %}
+                        <img style="width: 100%;" class="mt-5 align-center" src="{% static 'placeholder.jpg' %}" />
+                        {% endif %}
+                    </div>
+                    <div class="col">
+                        <img style="width: 100%;" id="result" class="mt-5 align-center" src="{% static 'placeholder.jpg' %}" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="col" id="styles">
+                {% for style in styles %}
+                <a href="#">
+                    <div class="card bg-dark text-white mt-2 mb-2" data-styleid="{{ style.id }}">
+                        <div class="card-body">
+                            <h5 class="card-title text-center">{{ style.name }}</h5>
+                        </div>
+                        <img src="{{ style.image.url }}" class="card-img" alt="...">
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p class="site-footer" style="margin: 0px;">Yosuke Omori &copy;{% now "Y" %}</p>
+    </footer>
+
+    
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+        <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script> -->
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+            integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+            crossorigin="anonymous"></script>
+        <script type="text/javascript">
+            $('.card').click(function(e) {
+                e.preventDefault();
+                $('#result').attr('src', "{% static 'loading.gif' %}");
+                $('#result').css('height', $('#content').height());
+                var style_id,img;
+                styleid = $(this).attr("data-styleid");
+                img = "{{ content }}";
+                var req = $.ajax(
+                    {
+                        type: "GET",
+                        url: "/stylize",
+                        data: {
+                            style_id: styleid,
+                            img_name: img
+                        },
+                        success:function(data){
+                        $('#result').attr('src',data);
+                        console.log(data);
+                    }
+
+                });
+            });
+        </script>
+</body>
+</html>
