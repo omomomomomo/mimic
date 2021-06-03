@@ -150,6 +150,7 @@
         <div class="row bg-light p-3 rounded-lg main-content mt-2">
         
             <div class="col-9">
+                
                 <form method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     <input type="file" name="content">
@@ -157,7 +158,7 @@
                     <button class="btn btn-dark" type="submit">Upload</button>
                     <br>
                 </form>
-                
+            
                 <div class="row">
                     <div class="col">
                         {% if content %}
