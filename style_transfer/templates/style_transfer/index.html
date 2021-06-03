@@ -122,7 +122,7 @@
     <header class="site-header">
         <div class="header-left">
             <a href="/">
-                <img src="../../../static/logo_img/mimic.png" alt="" height="65px" width="auto">                    
+                <img src="../../../staticfiles/logo_img/mimic.png" alt="" height="65px" width="auto">                    
             </a>
         </div>
         <div class="header-right"> 
@@ -164,11 +164,11 @@
                         {% if content %}
                         <img style="width: 100%;" id="content" class="mt-5 align-center" src="/media/content/{{ content }}" />
                         {% else %}
-                        <img style="width: 100%;" class="mt-5 align-center" src="{% static 'placeholder.jpg' %}" />
+                        <img style="width: 100%;" class="mt-5 align-center" src="{% staticfiles 'placeholder.jpg' %}" />
                         {% endif %}
                     </div>
                     <div class="col">
-                        <img style="width: 100%;" id="result" class="mt-5 align-center" src="{% static 'placeholder.jpg' %}" />
+                        <img style="width: 100%;" id="result" class="mt-5 align-center" src="{% staticfiles 'placeholder.jpg' %}" />
                     </div>
                 </div>
             </div>
@@ -205,7 +205,7 @@
         <script type="text/javascript">
             $('.card').click(function(e) {
                 e.preventDefault();
-                $('#result').attr('src', "{% static 'loading.gif' %}");
+                $('#result').attr('src', "{% staticfiles 'loading.gif' %}");
                 $('#result').css('height', $('#content').height());
                 var style_id,img;
                 styleid = $(this).attr("data-styleid");
