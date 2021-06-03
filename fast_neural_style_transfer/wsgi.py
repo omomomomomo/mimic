@@ -11,6 +11,7 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'fast_neural_style_transfer.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE',
+                      'fast_neural_style_transfer.settings')
 
 application = get_wsgi_application()
