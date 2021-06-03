@@ -205,7 +205,7 @@
         <script type="text/javascript">
             $('.card').click(function(e) {
                 e.preventDefault();
-                $('#result').attr('src', "{% staticfiles 'loading.gif' %}");
+                $('#result').attr('src', "{% static 'loading.gif' %}");
                 $('#result').css('height', $('#content').height());
                 var style_id,img;
                 styleid = $(this).attr("data-styleid");
