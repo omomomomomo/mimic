@@ -122,9 +122,9 @@ def apply_style_transfer(request):
         result = stylize.style(img_path, model_path)
         filename = 'result_' + str(int(time.time())) + '.jpg'
         result.save(os.path.join(settings.MEDIA_ROOT,
-                    'media/results', filename))
+                    'results', filename))
         print('just made '+filename)
-        return HttpResponse('/media/results/' + filename)
+        return HttpResponse('/results/' + filename)
 
 # 追加
 
