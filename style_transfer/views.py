@@ -113,7 +113,8 @@ def apply_style_transfer(request):
     if (request.method == 'GET' and request.GET['style_id']
             and request.GET['img_name']):
         style = get_object_or_404(Style, pk=request.GET['style_id'])
-        model_path = os.path.join(settings.MEDIA_ROOT, style.model.name)
+        # model_path = os.path.join(settings.MEDIA_ROOT, style.model.name)
+        model_path = os.path.join(settings.MEDIA_ROOT, style.model)
         img_path = os.path.join(settings.MEDIA_ROOT,
                                 'content', request.GET['img_name'])
         fs = FileSystemStorage(location=os.path.join(
