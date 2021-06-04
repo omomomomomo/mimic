@@ -174,13 +174,15 @@
             </div>
 
             <div class="col" id="styles">
-                {% for style in styles %}
+                {% for style in Styles %}
                 <a href="#">
                     <div class="card bg-dark text-white mt-2 mb-2" data-styleid="{{ style.id }}">
                         <div class="card-body">
                             <h5 class="card-title text-center">{{ style.name }}</h5>
                         </div>
                         <img src="{{ style.image.url }}" class="card-img" alt="...">
+                        <!-- <img src="{{ style.image }}" class="card-img" alt="..."> -->
+
                     </div>
                 </a>
                 {% endfor %}
