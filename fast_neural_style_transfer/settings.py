@@ -29,8 +29,8 @@ STATICFILES_DIRS = (
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = ''
-# SECRET_KEY = '+ci&kxly)@vo5zcfs_1++#x&+d32eex=#h&ul)9f*o-hs!s77l'
+
+SECRET_KEY = '+ci&kxly)@vo5zcfs_1++#x&+d32eex=#h&ul)9f*o-hs!s77l'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
