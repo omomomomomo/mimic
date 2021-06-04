@@ -24,7 +24,7 @@ import style_transfer.views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('style_transfer.urls')),
-    path('stylize/', style_transfer.views.apply_style_transfer),
+    # path('stylize/', style_transfer.views.apply_style_transfer),
 ]
 
 # urlpatterns = [
