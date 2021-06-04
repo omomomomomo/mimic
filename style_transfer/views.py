@@ -121,7 +121,8 @@ def apply_style_transfer(request):
             settings.MEDIA_ROOT, 'results'))
         result = stylize.style(img_path, model_path)
         filename = 'result_' + str(int(time.time())) + '.jpg'
-        result.save(os.path.join(settings.MEDIA_ROOT, 'results', filename))
+        result.save(os.path.join(settings.MEDIA_ROOT,
+                    'media/results', filename))
         print('just made '+filename)
         return HttpResponse('/media/results/' + filename)
 
