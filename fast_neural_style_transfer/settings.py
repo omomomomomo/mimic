@@ -48,6 +48,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #     'cloudinary',
+    #     'cloudinary_storage',
 ]
 
 MIDDLEWARE = [
@@ -86,11 +88,18 @@ WSGI_APPLICATION = 'fast_neural_style_transfer.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': 'd2js7e9gor7s99',
+        'HOST': 'ec2-3-226-134-153.compute-1.amazonaws.com',
+        'PORT': 5432,
+        'USER': 'yysbfrooeechfr',
+        'PASSWORD': '3bf5ef9c9e8a123a3efbbffb86d4e1f504866215dfa0e657ca18708016d748e5',
     }
 }
 
+# postgres://yysbfrooeechfr:3bf5ef9c9e8a123a3efbbffb86d4e1f504866215dfa0e657ca18708016d748e5@ec2-3-226-134-153.compute-1.amazonaws.com:5432/d2js7e9gor7s99
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
@@ -146,6 +155,12 @@ LOGOUT_REDIRECT_URL = 'login'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = '/media/'
-
+# cloudinary
+# DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+# CLOUDINARY_STORAGE = {
+#     'CLOUD_NAME': 'hlve30y0w',
+#     'API_KEY': '879127178243592',
+#     'API_SECRET': 'V_5jgspfLRYv9eEs-_aid9CPKao'
+# }
 
 django_heroku.settings(locals())
