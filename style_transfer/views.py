@@ -111,6 +111,7 @@ def home(request):
 
 
 def apply_style_transfer(request):
+
     if (request.method == 'GET' and request.GET['style_id']
             and request.GET['img_name']):
         style = get_object_or_404(Style, pk=request.GET['style_id'])
