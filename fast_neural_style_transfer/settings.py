@@ -48,8 +48,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    #     'cloudinary',
-    #     'cloudinary_storage',
+    'cloudinary',
+    'cloudinary_storage',
 ]
 
 MIDDLEWARE = [
@@ -156,11 +156,11 @@ LOGOUT_REDIRECT_URL = 'login'
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = '/media/'
 # cloudinary
-# DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-# CLOUDINARY_STORAGE = {
-#     'CLOUD_NAME': 'hlve30y0w',
-#     'API_KEY': '879127178243592',
-#     'API_SECRET': 'V_5jgspfLRYv9eEs-_aid9CPKao'
-# }
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'hlve30y0w',
+    'API_KEY': '879127178243592',
+    'API_SECRET': 'V_5jgspfLRYv9eEs-_aid9CPKao'
+}
 
 django_heroku.settings(locals())
