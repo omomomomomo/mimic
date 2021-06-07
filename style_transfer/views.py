@@ -73,6 +73,7 @@
 #         form = SignUpForm()
 #     return render(request, 'style_transfer/signup.html', {'form': form})
 
+
 import os
 import time
 from PIL import Image
@@ -115,11 +116,13 @@ def apply_style_transfer(request):
         style = get_object_or_404(Style, pk=request.GET['style_id'])
         # model_path = os.path.join(settings.MEDIA_ROOT, style.model.name)
         model_path = os.path.join(settings.MEDIA_ROOT, style.model.name)
-        print("確認", model_path)
+        print("確認_modelpath", model_path)
         img_path = os.path.join(settings.MEDIA_ROOT,
                                 'content', request.GET['img_name'])
+        print("確認_imgpath", img_path)
         fs = FileSystemStorage(location=os.path.join(
             settings.MEDIA_ROOT, 'results'))
+        print("確認_fs", fs)
         result = stylize.style(img_path, model_path)
         filename = 'result_' + str(int(time.time())) + '.jpg'
         result.save(os.path.join(settings.MEDIA_ROOT, 'results', filename))
