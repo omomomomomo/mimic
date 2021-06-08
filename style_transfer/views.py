@@ -128,8 +128,9 @@ def apply_style_transfer(request):
         filename = 'result_' + str(int(time.time())) + '.jpg'
         result.save(os.path.join(settings.MEDIA_ROOT, 'results', filename))
         print('just made '+filename)
+        print()
         # return HttpResponse('/media/results/' + filename)
-        return HttpResponse('/results/' + filename)
+        return HttpResponse('media/results/'+filename)
 
 # 追加
 
