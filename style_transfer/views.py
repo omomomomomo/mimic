@@ -107,7 +107,7 @@ def home(request):
             settings.MEDIA_ROOT, 'content'))
         filename = fs.save(content.name, content)
         img_path = os.path.join(fs.location, filename)
-    return render(request, 'style_transfer/index.html', {'content': content, 'styles': styles})
+    return render(request, 'index.html', {'content': content, 'styles': styles})
 
 
 def apply_style_transfer(request):
@@ -137,11 +137,11 @@ def apply_style_transfer(request):
 
 class Login(LoginView):
     form_class = LoginForm
-    template_name = 'style_transfer/login.html'
+    template_name = 'login.html'
 
 
 class Logout(LogoutView):
-    template_name = 'style_transfer/login.html'
+    template_name = 'login.html'
 
 
 def signup(request):
@@ -153,4 +153,4 @@ def signup(request):
             return redirect(to='index')
     else:
         form = SignUpForm()
-    return render(request, 'style_transfer/signup.html', {'form': form})
+    return render(request, 'signup.html', {'form': form})
